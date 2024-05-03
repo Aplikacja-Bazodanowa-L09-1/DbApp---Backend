@@ -1,20 +1,31 @@
 const {client} = require('../Database/ConnectDB')
 const jwt = require('jsonwebtoken')
 
+// MODELS
+const {User, Refresh_token} = require('../Models/models')
+
 const Login = async (req,res) => {
 
-    try {
-        const query = await client.query(`SELECT * from users where username='${req.body.username}'
-                                                                and password='${req.body.password}'`)
-        if(query.rowCount>0){
+    try{
+        console.log(req.body.username)
+        const searched_user = await User.findAll({ 
+            where: {
+                username: `${req.body.user}`,
+                password: `${req.body.password}`
+            }
+        })
+
+        if(searched_user){
             
             const user = {name:req.body.username}
             const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '15s' })
             const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET)
 
             try {
-                
-                await client.query(`INSERT INTO refresh_tokens(token) VALUES('${refreshToken}')`)
+                await Refresh_token.create({
+                    token: `${refreshToken}`
+                })
+                // await client.query(`INSERT INTO refresh_tokens(token) VALUES('${refreshToken}')`)
                 res.json({"access":accessToken, "refresh":refreshToken})
 
             } catch (error) {
