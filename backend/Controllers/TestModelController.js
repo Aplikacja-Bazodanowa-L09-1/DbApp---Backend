@@ -1,15 +1,15 @@
-const {User} = require('../Models/models')
+const {User, Refresh_token, Event_players,Events,Player_answers,Players, Positions, Player_stats,Questionnares,Questions,Rented_equipments,Seasons,Teams,Team_stats} = require('../Models/models')
 
 const TestModelController = async (req, res) => {
     try {
-        const user = await User.findAll({
-            attributes: ['username'],
+        const questions = await Questions.findAll({
+
             where: {
-                username: 'Dante01'
+                id: 221
             }
         })
-        if(user){
-            res.json({user: user})
+        if(questions){
+            res.json({questions})
         }
         
     } catch (error) {
