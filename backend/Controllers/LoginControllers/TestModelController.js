@@ -1,12 +1,9 @@
-const {User} = require('../Models/models')
+const {User, Refresh_token} = require('../../Models/models')
 
 const TestModelController = async (req, res) => {
     try {
-        const user = await User.findAll({
-            attributes: ['username'],
-            where: {
-                username: 'Dante01'
-            }
+        const user = await Refresh_token.findAll({
+            attributes: ['tokens']
         })
         if(user){
             res.json({user: user})

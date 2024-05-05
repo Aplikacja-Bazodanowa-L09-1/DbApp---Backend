@@ -1,14 +1,15 @@
-const {client} = require('../Database/ConnectDB')
+const {client} = require('../../Database/ConnectDB')
 const jwt = require('jsonwebtoken')
 
 // MODELS
-const {User, Refresh_token} = require('../Models/models')
+const {User, Refresh_token} = require('../../Models/models')
 
 const Login = async (req,res) => {
 
     try{
         console.log(req.body.username)
-        const searched_user = await User.findAll({ 
+        const searched_user = await User.findAll({
+            attributes: ['username'], 
             where: {
                 username: `${req.body.user}`,
                 password: `${req.body.password}`
@@ -23,7 +24,7 @@ const Login = async (req,res) => {
 
             try {
                 await Refresh_token.create({
-                    token: `${refreshToken}`
+                    tokens: `${refreshToken}`,
                 })
                 // await client.query(`INSERT INTO refresh_tokens(token) VALUES('${refreshToken}')`)
                 res.json({"access":accessToken, "refresh":refreshToken})

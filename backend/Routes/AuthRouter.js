@@ -1,15 +1,14 @@
 const express = require('express')
 const Router = express.Router()
 
-const jwt = require('jsonwebtoken')
 
 // CONTROLLERS
-const LoginController = require('../Controllers/LoginController')
-const TestTokenController = require('../Controllers/TestTokenController')
-const RefreshTokenController = require('../Controllers/RefreshTokenController')
-const RemindPasswordController = require('../Controllers/RemindPasswordController')
-const ResetPasswordController = require('../Controllers/ResetPasswordController')
-const TestModelController = require('../Controllers/TestModelController.js')
+const LoginController = require('../Controllers/LoginControllers/LoginController.js')
+const TestTokenController = require('../Controllers/LoginControllers/TestTokenController.js')
+const RefreshTokenController = require('../Controllers/LoginControllers/RefreshTokenController.js')
+const RemindPasswordController = require('../Controllers/LoginControllers/RemindPasswordController.js')
+const ResetPasswordController = require('../Controllers/LoginControllers/ResetPasswordController.js')
+const TestModelController = require('../Controllers/LoginControllers/TestModelController.js')
 
 // MIDDLEWARE
 const authenticateToken = require('../Middleware/authenticateToken')

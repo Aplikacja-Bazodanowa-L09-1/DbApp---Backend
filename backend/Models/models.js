@@ -17,6 +17,14 @@ User.init(
             type: DataTypes.STRING,
             allowNull: false
         },
+        first_name: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        last_name: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
         email: {
             type: DataTypes.STRING,
             allowNull: false
@@ -25,11 +33,19 @@ User.init(
             type: DataTypes.STRING,
             allowNull: false
         },
+        is_active: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false
+        },
+        phone_number: {
+            type: DataTypes.BOOLEAN,
+            allowNull: true
+        },
         resetpasswordtoken: {
             type: DataTypes.STRING,
             allowNull: true
         },
-        resetpasswordtokenexpiredate: {
+        resetpasswordtokenexpirdate: {
             type: DataTypes.TIME,
             allowNull: true
         },
@@ -37,14 +53,10 @@ User.init(
             type: DataTypes.STRING,
             allowNull: true
         },
-        emailverifytokenexpiredate: {
+        emailverifytokenexpirdate: {
             type: DataTypes.TIME,
             allowNull: true
         },
-        is_active: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false
-        }
     },
     {
         sequelize,
@@ -55,7 +67,13 @@ User.init(
 class Refresh_token extends Model {}
 Refresh_token.init(
     {
-        token: {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            allowNull: false,
+            autoIncrement: true
+        },
+        tokens: {
             type: DataTypes.STRING,
             allowNull: true
         }

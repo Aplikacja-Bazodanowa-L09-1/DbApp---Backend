@@ -1,5 +1,5 @@
 const nodemailer = require('nodemailer')
-const {client} = require('../Database/ConnectDB')
+const {client} = require('../../Database/ConnectDB')
 const crypto = require('crypto')
 
 

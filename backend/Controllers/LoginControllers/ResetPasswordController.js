@@ -1,4 +1,4 @@
-const {client} = require('../Database/ConnectDB') 
+const {client} = require('../../Database/ConnectDB') 
 
 const ResetPasswordController = async (req, res) => {
     const reset_query = await client.query(`UPDATE users set password='${req.body.password}' where resetpasswordtoken='${req.params.token}'`, (err, info) => {

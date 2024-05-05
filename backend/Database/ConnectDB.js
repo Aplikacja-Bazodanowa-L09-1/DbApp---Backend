@@ -8,7 +8,11 @@
 const Sequelize = require('sequelize')
 require('dotenv').config()
 
-const sequelize = new Sequelize(process.env.POSTGRES_URL)
+const sequelize = new Sequelize(process.env.POSTGRES_URL, {
+    define: {
+        timestamps: false
+    }
+})
 
 const ConnectDB = async () => {
     try {
