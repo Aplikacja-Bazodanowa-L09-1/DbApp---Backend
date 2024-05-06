@@ -115,7 +115,6 @@ Blacklist_refresh_token.init(
 )
 
 
-module.exports = {User, Refresh_token, Blacklist_refresh_token}
 class Event_players extends Model {}
 Event_players.init(
     {
@@ -502,5 +501,5 @@ Team_stats.init(
 
 )
 
-module.exports = {User, Refresh_token, Event_players,Events,Player_answers,Players, Positions, Player_stats,Questionnares,Questions, Rented_equipments,Seasons, Teams,Team_stats}
+module.exports = {User, Refresh_token, Event_players,Events,Player_answers,Players, Positions, Player_stats,Questionnares,Questions, Rented_equipments,Seasons, Teams,Team_stats, Blacklist_refresh_token}
 

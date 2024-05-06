@@ -2,18 +2,22 @@ const nodemailer = require('nodemailer')
 const {client} = require('../../Database/ConnectDB')
 const crypto = require('crypto')
 
-
+const {User} = require('../../Models/models')
 
 const RemindPasswordController = async (req, res) => {
     try {
-        const query = await client.query(`SELECT * from users where email='${req.body.email}'`)
-        if(query.rowCount > 0){
+        const query = await User.findAll({
+            where: {
+                email: `${req.body.email.toLowerCase()}`
+            }
+        })
+        console.log("EEEEELLLLLOOOOO")
+        console.log(query)
+        // const query = awaitclient.query(`SELECT * from users where email='${req.body.email}'`)
+        if(query.length != 0){
             const resetPasswordToken = crypto.randomBytes(32).toString('hex')
-            
-            try {
-                const reset_token_query = await client.query(`UPDATE users SET resetpasswordtoken='${resetPasswordToken}' where email='${req.body.email}'`)
-                
-                const now = new Date()
+
+            const now = new Date()
                 const date = {
                     year: now.getFullYear(),
                     month: now.getMonth(),
@@ -36,10 +40,24 @@ const RemindPasswordController = async (req, res) => {
                 }
 
                 const tokenExpireDateString  = `${tEDF.year}-${tEDF.month}-${tEDF.day} ${tEDF.hour}:${tEDF.minute}:${tEDF.second}`
+        
 
-                const tokenExpireDateQuery = await client.query(`UPDATE users SET resetpasswordtokenexpiredate='${tokenExpireDateString}' where email='${req.body.email}'`)
-                console.log("tokenExpiresDate ",tokenExpireDateString)
+            try {
+                const token_query = await User.update(
+                    {
+                        resetpasswordtoken: `${resetPasswordToken}`,
+                        resetpasswordtokenexpirdate: `${tokenExpireDateString}`
+                    },
+                    {
+                        where: {
+                            email: `${req.body.email.toLowerCase()}`
+                        }
+                    }
+                )
 
+                //const reset_token_query = await client.query(`UPDATE users SET resetpasswordtoken='${resetPasswordToken}' where email='${req.body.email}'`)
+                //const tokenExpireDateQuery = await client.query(`UPDATE users SET resetpasswordtokenexpiredate='${tokenExpireDateString}' where email='${req.body.email}'`)
+                
 
 
                 // MAIL SENDING
@@ -80,6 +98,9 @@ const RemindPasswordController = async (req, res) => {
             } catch (error) {
                 res.json({"detail":error})
             }
+        }
+        else{
+            res.json({'message': 'Jesli istnieje konto z tym emailem, zostal nie niego wyslany link resetujacy haslo.'})
         }
     } catch (error) {
         res.json({"detail":error})
