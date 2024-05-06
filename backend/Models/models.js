@@ -84,6 +84,26 @@ Refresh_token.init(
     }
 )
 
+class Blacklist_refresh_token extends Model {}
+Blacklist_refresh_token.init(
+    {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            allowNull: false,
+            autoIncrement: true
+        },
+        token: {
+            type: DataTypes.STRING,
+            allowNull: true
+        }
+    },
+    {
+        sequelize,
+        modelName: 'blacklist_refresh_tokens'
+    }
+)
 
-module.exports = {User, Refresh_token}
+
+module.exports = {User, Refresh_token, Blacklist_refresh_token}
 

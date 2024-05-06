@@ -9,6 +9,7 @@ const RefreshTokenController = require('../Controllers/LoginControllers/RefreshT
 const RemindPasswordController = require('../Controllers/LoginControllers/RemindPasswordController.js')
 const ResetPasswordController = require('../Controllers/LoginControllers/ResetPasswordController.js')
 const TestModelController = require('../Controllers/LoginControllers/TestModelController.js')
+const RevokeTokenController = require('../Controllers/LoginControllers/RevokeTokenController.js')
 
 // MIDDLEWARE
 const authenticateToken = require('../Middleware/authenticateToken')
@@ -18,6 +19,7 @@ const authenticateToken = require('../Middleware/authenticateToken')
 Router.get('/test', authenticateToken, TestTokenController)
 Router.post('/token', LoginController)
 Router.post('/refresh_token', RefreshTokenController)
+Router.post('/revoke_token', RevokeTokenController)
 Router.post('/remind_password', RemindPasswordController)
 Router.post('/reset_password/:token', ResetPasswordController)
 Router.get('/test_model', TestModelController)

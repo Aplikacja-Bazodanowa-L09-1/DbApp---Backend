@@ -11,12 +11,12 @@ const Login = async (req,res) => {
         const searched_user = await User.findAll({
             attributes: ['username'], 
             where: {
-                username: `${req.body.user}`,
+                username: `${req.body.username}`,
                 password: `${req.body.password}`
             }
         })
 
-        if(searched_user){
+        if(searched_user.length != 0){
             
             const user = {name:req.body.username}
             const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '15s' })
