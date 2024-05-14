@@ -61,6 +61,7 @@ User.init(
             allowNull: true
         },
         
+        
     },
     {
         sequelize,
@@ -456,15 +457,11 @@ Teams.init(
 class Team_stats extends Model {}
 Team_stats.init(
     {
-        id:{
-            type:DataTypes.INTEGER,
-            allowNull: false,
-            primaryKey:true,
-            autoIncrement:true
-        },
         team_id:{
             type: DataTypes.INTEGER,
-            allowNull:true,
+            allowNull:false,
+            primaryKey: true,
+            autoIncrement: true
         },
         season_id:{
             type: DataTypes.INTEGER,
@@ -500,6 +497,36 @@ Team_stats.init(
     }
 
 )
+
+// RELATIONS
+
+User.hasOne(Players, {
+    foreignKey: 'id'
+})
+Players.belongsTo(User, {
+    foreignKey: 'id'
+})
+
+Teams.hasMany(Players, {
+    foreignKey: 'team_id'
+})
+Players.belongsTo(Teams, {
+    foreignKey: 'team_id'
+})
+
+Team_stats.hasMany(Players, {
+    foreignKey: 'id'
+})
+Players.belongsTo(Team_stats, {
+    foreignKey: 'team_id'
+})
+
+Teams.hasMany(Team_stats, {
+    foreignKey: 'team_id'
+})
+Team_stats.belongsTo(Teams, {
+    foreignKey: 'team_id'
+})
 
 module.exports = {User, Refresh_token, Event_players,Events,Player_answers,Players, Positions, Player_stats,Questionnares,Questions, Rented_equipments,Seasons, Teams,Team_stats, Blacklist_refresh_token}
 

@@ -18,13 +18,14 @@ const authenticateToken = async (req, res, next) => {
     }
 
 
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async (err, user) => {
         console.log(err)
         if(err) return res.sendStatus(403)
 
         req.user = user
         next()
     })
+
 }
 
 module.exports = authenticateToken

@@ -11,6 +11,7 @@ const {ConnectDB} = require('./Database/ConnectDB')
 // ROUTERS
 const LoginRouter = require('./Routes/AuthRouter')
 const AppRouter = require('./Routes/AppRouter')
+const TeamStatsRouter = require('./Routes/TeamStatsRouter')
 
 
 // MIDDLEWARE
@@ -20,6 +21,7 @@ app.use(cors({origin: "http://localhost:3000"}))
 // PATHS
 app.use('/auth', LoginRouter)
 app.use('/app', AppRouter)
+app.use('/team_stats', TeamStatsRouter)
 
 
 
