@@ -8,6 +8,7 @@ const UserProfileController = async (req, res) => {
             include: [
                 {
                     model: Players,
+                    attributes: ['id'],
                     include: [{
                         model: Teams,
                         attributes: ['name', 'team_message_title', 'team_message']
@@ -20,7 +21,7 @@ const UserProfileController = async (req, res) => {
         })
 
         if(User_cred.length != 0){
-            return res.json({user:User_cred})
+            return res.json({user_cred:User_cred})
         }
 
         
