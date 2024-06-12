@@ -11,6 +11,7 @@ const TeamStatisticsController = require('../Controllers/TeamStatsControllers/Te
 // MIDDLEWARE
 const authenticateToken = require('../Middleware/authenticateToken')
 
+// ROUTES
 Router.get('/', authenticateToken, MainViewController)
 Router.get('/user/profile', authenticateToken, UserProfileController)
 Router.get('/team/notification', authenticateToken, NotificationController)

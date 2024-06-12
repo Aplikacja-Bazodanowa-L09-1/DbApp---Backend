@@ -13,6 +13,7 @@ const LoginRouter = require('./Routes/AuthRouter')
 const AppRouter = require('./Routes/AppRouter')
 const TeamStatsRouter = require('./Routes/TeamStatsRouter')
 const UserRouter = require('./Routes/UserRouter')
+const EquipmentRouter = require('./Routes/EquipmentRouter')
 
 
 // MIDDLEWARE
@@ -24,6 +25,7 @@ app.use('/auth', LoginRouter)
 app.use('/app', AppRouter)
 app.use('/team_stats', TeamStatsRouter)
 app.use('/user', UserRouter)
+app.use('/equipment', EquipmentRouter)
 
 
 const PORT = process.env.SERVER_PORT | 3000

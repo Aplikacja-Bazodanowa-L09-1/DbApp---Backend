@@ -383,22 +383,49 @@ Rented_equipments.init(
             allowNull:false,
             primaryKey:true
         },
-        equipment:{
+        equipment_id:{
             type: DataTypes.STRING,
             allowNull:false,
             primaryKey:true
         },
         rent_date:{
             type:DataTypes.DATE,
-            allowNull:false
+            allowNull:true
         }
     },
     {
         sequelize,
         modelName:'rented_equipments'
     }
-
 )
+class Equipment extends Model {}
+Equipment.init(
+    {
+        id:{
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            primaryKey: true
+        },
+        descr:{
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        total:{
+            type: DataTypes.INTEGER,
+            allowNull: true
+        },
+        available:{
+            type: DataTypes.INTEGER,
+            allowNull: true
+        }
+    },
+    {
+        sequelize,
+        modelName: 'equipments'
+    }
+)
+
+
 class Seasons extends Model {}
 Seasons.init(
     {
@@ -534,5 +561,21 @@ Player_stats.belongsTo(Players, {
     foreignKey: 'player_id'
 })
 
-module.exports = {User, Refresh_token, Event_players,Events,Player_answers,Players, Positions, Player_stats,Questionnares,Questions, Rented_equipments,Seasons, Teams,Team_stats, Blacklist_refresh_token}
+Equipment.hasMany(Rented_equipments, {
+    foreignKey: 'equipment_id'
+})
+Rented_equipments.belongsTo(Equipment, {
+    foreignKey: 'equipment_id'
+})
+
+Players.hasMany(Rented_equipments, {
+    foreignKey: 'player_id'
+})
+Rented_equipments.belongsTo(Players, {
+    foreignKey: 'player_id'
+})
+
+
+
+module.exports = {User, Refresh_token, Event_players,Events,Player_answers,Players, Positions, Player_stats,Questionnares,Questions, Rented_equipments, Equipment, Seasons, Teams,Team_stats, Blacklist_refresh_token}
 

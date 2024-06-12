@@ -16,7 +16,7 @@ const TeamInfoController = async (req, res) => {
               }
             },
             where: {
-              username: 'JC'
+              username: req.user.name
             }
           })
           .then(async user => {
