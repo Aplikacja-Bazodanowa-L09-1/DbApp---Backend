@@ -8,14 +8,19 @@ const TeamStatisticsController = require('../Controllers/TeamStatsControllers/Te
 const TeamInfoController = require('../Controllers/TeamStatsControllers/TeamInfoController')
 const QuestionaryController = require('../Controllers/TeamStatsControllers/QuestionaryController')
 
+const TeamFormViewController = require('../Controllers/TeamStatsControllers/TeamFormViewController')
+
 // MIDDLEWARE
 const authenticateToken = require('../Middleware/authenticateToken')
+//const TeamFormViewController = require('../Controllers/TeamStatsControllers/TeamFormViewController')
 
 // ROUTES
 Router.get('/', authenticateToken, TeamStatsViewController)
 Router.get('/statistics', authenticateToken, TeamStatisticsController)
 Router.get('/info', authenticateToken, TeamInfoController)
-Router.get('/questionary', authenticateToken, QuestionaryController)
+
+Router.get('/form', authenticateToken, TeamFormViewController)
+
 
 
 
