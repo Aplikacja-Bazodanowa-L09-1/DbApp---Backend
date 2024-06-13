@@ -533,6 +533,24 @@ Players.hasMany(Player_stats,{
 Player_stats.belongsTo(Players, {
     foreignKey: 'player_id'
 })
+Teams.hasMany(Events,{
+    foreignKey: 'teams_id'
+})
+Events.belongsTo(Teams, {
+    foreignKey:'teams_id'
+})
+Events.hasMany(Event_players, {
+    foreignKey: 'event_id'
+})
+Event_players.belongsTo(Events,{
+    foreignKey: 'event_id'
+})
+// Players.hasMany(Event_players, {
+//     foreignKey: 'player_id'
+// })
+// Event_players.belongsTo(Players, {
+//     foreignKey: 'player_id'
+// })
 
 module.exports = {User, Refresh_token, Event_players,Events,Player_answers,Players, Positions, Player_stats,Questionnares,Questions, Rented_equipments,Seasons, Teams,Team_stats, Blacklist_refresh_token}
 
