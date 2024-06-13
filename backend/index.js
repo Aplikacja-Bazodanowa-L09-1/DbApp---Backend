@@ -13,7 +13,11 @@ const LoginRouter = require('./Routes/AuthRouter')
 const AppRouter = require('./Routes/AppRouter')
 const TeamStatsRouter = require('./Routes/TeamStatsRouter')
 const UserRouter = require('./Routes/UserRouter')
+<<<<<<< Updated upstream
+=======
 const EquipmentRouter = require('./Routes/EquipmentRouter')
+const CoachRouter = require('./Routes/CoachRouter')
+>>>>>>> Stashed changes
 
 
 // MIDDLEWARE
@@ -25,7 +29,6 @@ app.use('/auth', LoginRouter)
 app.use('/app', AppRouter)
 app.use('/team_stats', TeamStatsRouter)
 app.use('/user', UserRouter)
-app.use('/equipment', EquipmentRouter)
 
 
 const PORT = process.env.SERVER_PORT | 3000

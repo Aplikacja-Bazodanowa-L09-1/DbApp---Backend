@@ -82,12 +82,12 @@ Refresh_token.init(
             type: DataTypes.STRING,
             allowNull: true
         },
-        id:{
-            type:DataTypes.INTEGER,
-            allowNull:false,
-            primaryKey:true,
-            autoIncrement:true
-        }
+        // id:{
+        //     type:DataTypes.INTEGER,
+        //     allowNull:false,
+        //     primaryKey:true,
+        //     autoIncrement:true
+        // }
     },
     {
         sequelize,
@@ -525,6 +525,34 @@ Team_stats.init(
 
 )
 
+class Create_user_token extends Model{}
+Create_user_token.init(
+    {
+        id:{
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            primaryKey: true,
+            autoIncrement: true
+        },
+        expire_date:{
+            type: DataTypes.TIME,
+            allowNull: false,
+        },
+        role: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        token: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+    },
+    {
+        sequelize,
+        modelName: 'create_user_token'
+    }
+)
+
 // RELATIONS
 
 User.hasOne(Players, {
@@ -579,21 +607,11 @@ Event_players.belongsTo(Events,{
 //     foreignKey: 'player_id'
 // })
 
-Equipment.hasMany(Rented_equipments, {
-    foreignKey: 'equipment_id'
-})
-Rented_equipments.belongsTo(Equipment, {
-    foreignKey: 'equipment_id'
-})
-
-Players.hasMany(Rented_equipments, {
-    foreignKey: 'player_id'
-})
-Rented_equipments.belongsTo(Players, {
-    foreignKey: 'player_id'
-})
+<<<<<<< Updated upstream
+module.exports = {User, Refresh_token, Event_players,Events,Player_answers,Players, Positions, Player_stats,Questionnares,Questions, Rented_equipments,Seasons, Teams,Team_stats, Blacklist_refresh_token}
+=======
 
 
-
-module.exports = {User, Refresh_token, Event_players,Events,Player_answers,Players, Positions, Player_stats,Questionnares,Questions, Rented_equipments, Equipment, Seasons, Teams,Team_stats, Blacklist_refresh_token}
+module.exports = {User, Refresh_token, Event_players,Events,Player_answers,Players, Positions, Player_stats,Questionnares,Questions, Rented_equipments, Equipment, Seasons, Teams,Team_stats, Blacklist_refresh_token, Create_user_token}
+>>>>>>> Stashed changes
 
