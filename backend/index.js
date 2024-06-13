@@ -13,11 +13,8 @@ const LoginRouter = require('./Routes/AuthRouter')
 const AppRouter = require('./Routes/AppRouter')
 const TeamStatsRouter = require('./Routes/TeamStatsRouter')
 const UserRouter = require('./Routes/UserRouter')
-<<<<<<< Updated upstream
-=======
 const EquipmentRouter = require('./Routes/EquipmentRouter')
 const CoachRouter = require('./Routes/CoachRouter')
->>>>>>> Stashed changes
 
 
 // MIDDLEWARE

@@ -607,11 +607,7 @@ Event_players.belongsTo(Events,{
 //     foreignKey: 'player_id'
 // })
 
-<<<<<<< Updated upstream
-module.exports = {User, Refresh_token, Event_players,Events,Player_answers,Players, Positions, Player_stats,Questionnares,Questions, Rented_equipments,Seasons, Teams,Team_stats, Blacklist_refresh_token}
-=======
 
 
 module.exports = {User, Refresh_token, Event_players,Events,Player_answers,Players, Positions, Player_stats,Questionnares,Questions, Rented_equipments, Equipment, Seasons, Teams,Team_stats, Blacklist_refresh_token, Create_user_token}
->>>>>>> Stashed changes
 
