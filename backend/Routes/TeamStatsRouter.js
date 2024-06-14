@@ -7,10 +7,6 @@ const TeamStatsViewController = require('../Controllers/TeamStatsControllers/Tea
 const TeamStatisticsController = require('../Controllers/TeamStatsControllers/TeamStatisticsController')
 const TeamInfoController = require('../Controllers/TeamStatsControllers/TeamInfoController')
 const QuestionaryController = require('../Controllers/TeamStatsControllers/QuestionaryController')
-
-=======
-const QuestionaryController = require('../Controllers/TeamStatsControllers/QuestionaryController')
->>>>>>> Stashed changes
 const TeamFormViewController = require('../Controllers/TeamStatsControllers/TeamFormViewController')
 
 // MIDDLEWARE
