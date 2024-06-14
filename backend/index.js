@@ -26,6 +26,16 @@ app.use('/auth', LoginRouter)
 app.use('/app', AppRouter)
 app.use('/team_stats', TeamStatsRouter)
 app.use('/user', UserRouter)
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+app.use('/equipment', EquipmentRouter)
+app.use('/coach', CoachRouter)
+>>>>>>> Stashed changes
+=======
+app.use('/equipment', EquipmentRouter)
+app.use('/coach', CoachRouter)
+>>>>>>> Stashed changes
 
 
 const PORT = process.env.SERVER_PORT | 3000
