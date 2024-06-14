@@ -32,7 +32,7 @@ User.init(
             allowNull: false
         },
         role: {
-            type: DataTypes.STRING,
+            type: DataTypes.ENUM('Player', 'Coach', 'Admin'),
             allowNull: false
         },
         is_active: {
@@ -242,22 +242,25 @@ Players.init(
     }
 
 )
+
+
+
 class Positions extends Model {}
 Positions.init(
     {
-        player_id:{
+        position_id:{
             type: DataTypes.INTEGER,
             allowNull:false,
             primaryKey:true
         },
-        position:{
+        position_code:{
             type: DataTypes.ENUM('BR','LO','ŚO','PO','CLS','CPS','LP','ŚP','PP','ŚPD','ŚPO','LS','PS','ŚN','N'),
             allowNull:true,
             primaryKey:true
         },
-        pos_strength:{
-            type:DataTypes.ENUM('Preferowana', 'Grywalna'),
-            allowNull:true
+        full_name:{
+            type: DataTypes.STRING(50),
+            allowNull:false ,
         },
     },
     {
@@ -266,6 +269,39 @@ Positions.init(
     }
 
 )
+
+class Player_positions extends Model{}
+Player_positions.init(
+    {
+        player_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            primaryKey: true,
+            // references: {
+            //     model: Players,
+            //     key: 'id'
+            // }
+        },
+        position_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            primaryKey: true,
+            // references: {
+            //     model: Positions,
+            //     key: 'position_id' 
+            // }
+        },
+        pos_strength: {
+            type: DataTypes.ENUM('Preferowana', 'Grywalna'), 
+            allowNull: false
+        }
+        },
+    {
+        sequelize,
+         modelName: 'player_positions',   
+    }
+) 
+
 class Player_stats extends Model {}
 Player_stats.init(
     {
@@ -535,6 +571,13 @@ Players.belongsTo(User, {
     foreignKey: 'id'
 })
 
+User.hasOne(Teams, { 
+    foreignKey: 'coach_id'
+ });
+Teams.belongsTo(User, { 
+    foreignKey: 'coach_id', as: 'coach'
+ });
+
 Teams.hasMany(Players, {
     foreignKey: 'team_id'
 })
@@ -573,6 +616,17 @@ Events.hasMany(Event_players, {
 Event_players.belongsTo(Events,{
     foreignKey: 'event_id'
 })
+
+
+Players.belongsToMany(Positions, { through: Player_positions, foreignKey: 'player_id' });
+Positions.belongsToMany(Players, { through: Player_positions, foreignKey: 'position_id' });
+
+Players.hasMany(Player_positions, { foreignKey: 'player_id' });
+Player_positions.belongsTo(Players, { foreignKey: 'player_id' });
+
+// // // In Positions model
+Positions.hasMany(Player_positions, { foreignKey: 'position_id' });
+Player_positions.belongsTo(Positions, { foreignKey: 'position_id' });
 // Players.hasMany(Event_players, {
 //     foreignKey: 'player_id'
 // })
@@ -585,6 +639,10 @@ module.exports = {User, Refresh_token, Event_players,Events,Player_answers,Playe
 =======
 
 
+<<<<<<< Updated upstream
 module.exports = {User, Refresh_token, Event_players,Events,Player_answers,Players, Positions, Player_stats,Questionnares,Questions, Rented_equipments, Equipment, Seasons, Teams,Team_stats, Blacklist_refresh_token, Create_user_token}
+>>>>>>> Stashed changes
+=======
+module.exports = {User, Refresh_token, Event_players,Events,Player_answers,Players, Positions, Player_positions, Player_stats,Questionnares,Questions, Rented_equipments, Equipment, Seasons, Teams,Team_stats, Blacklist_refresh_token, Create_user_token}
 >>>>>>> Stashed changes
 

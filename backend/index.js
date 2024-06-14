@@ -20,6 +20,7 @@ const CoachRouter = require('./Routes/CoachRouter')
 >>>>>>> Stashed changes
 
 
+
 // MIDDLEWARE
 app.use(express.json())
 app.use(cors({origin: "http://localhost:3000"}))
@@ -30,6 +31,11 @@ app.use('/app', AppRouter)
 app.use('/team_stats', TeamStatsRouter)
 app.use('/user', UserRouter)
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+app.use('/equipment', EquipmentRouter)
+app.use('/coach', CoachRouter)
+>>>>>>> Stashed changes
 =======
 app.use('/equipment', EquipmentRouter)
 app.use('/coach', CoachRouter)

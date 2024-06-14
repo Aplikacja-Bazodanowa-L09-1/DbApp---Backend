@@ -10,23 +10,12 @@ const TeamFormViewController = async (req, res) => {
             day: actual_date.getDate(),
             hour: actual_date.getHours(),
             minute: actual_date.getMinutes(),
-            //second: actual_date.getSeconds()
+    
         }
         const date_of_event = new Date(date.year, date.month, date.day+7,
             date.hour, date.minute)
 
-        const DOF = {
-            year: date_of_event.getFullYear(),
-            month: date_of_event.getMonth()+1,
-            day: date_of_event.getDate(),
-            hour: date_of_event.getHours(),
-            minute: date_of_event.getMinutes(),
-            //second: date_of_event.getSeconds()
-        }
-        
     try {
-        
-
         const user = await User.findOne({
             where: { username: req.user.name },
             include: {
@@ -100,7 +89,7 @@ const TeamFormViewController = async (req, res) => {
             
             // console.log(events_form[0].player.team.events[0].id)
             //console.log(event_will_attend_players)
-            console.log(events_form)
+            //console.log(events_form)
             return res.json({
                 playerCount: playerCount,
                 event_will_attend_players: event_will_attend_players,
