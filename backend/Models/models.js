@@ -179,7 +179,7 @@ Events.init(
 class Player_answers extends Model{}
 Player_answers.init(
     {
-        question_id:{
+        questionnare_id:{
             type: DataTypes.INTEGER,
             allowNull:false,
             primaryKey:true
@@ -189,13 +189,21 @@ Player_answers.init(
             allowNull:false,
             primaryKey:true
         },
-        string_answer:{
-            type:DataTypes.TEXT,
-            allowNull:true
-        },
-        numeric_answer:{
+        mental_condition:{
             type:DataTypes.INTEGER,
             allowNull:true
+        },
+        physical_condition:{
+            type:DataTypes.INTEGER,
+            allowNull:true
+        },
+        motivation: {
+            type:DataTypes.INTEGER,
+            allowNull: true
+        },
+        injuries: {
+            type: DataTypes.STRING,
+            allowNull: true
         }
     },
     {
@@ -376,10 +384,6 @@ Questionnares.init(
             type: DataTypes.INTEGER,
             allowNull:true,
         },
-        title:{
-            type:DataTypes.STRING,
-            allowNull:true
-        }
     },
     {
         sequelize,
@@ -388,29 +392,7 @@ Questionnares.init(
 
 )
 class Questions extends Model {}
-Questions.init(
-    {
-        id:{
-            type: DataTypes.INTEGER,
-            allowNull:false,
-            primaryKey:true,
-            autoIncrement: true
-        },
-        question:{
-            type: DataTypes.TEXT,
-            allowNull:false,
-        },
-        questionnare_id:{
-            type:DataTypes.INTEGER,
-            allowNull:true
-        }
-    },
-    {
-        sequelize,
-        modelName:'questions'
-    }
 
-)
 class Rented_equipments extends Model {}
 Rented_equipments.init(
     {
@@ -643,17 +625,53 @@ Events.hasMany(Event_players, {
 Event_players.belongsTo(Events,{
     foreignKey: 'event_id'
 })
+Players.belongsToMany(Positions, { 
+    through: Player_positions,
+    foreignKey: 'player_id'
+});
+
+Positions.belongsToMany(Players, { 
+    through: Player_positions, 
+    foreignKey: 'position_id' 
+});
+
+Players.hasMany(Player_positions, {
+    foreignKey: 'player_id' 
+});
+Player_positions.belongsTo(Players, { 
+    foreignKey: 'player_id' 
+});
+
+Positions.hasMany(Player_positions, { 
+    foreignKey: 'position_id' 
+});
+Player_positions.belongsTo(Positions, { 
+    foreignKey: 'position_id' 
+});
 
 
-Players.belongsToMany(Positions, { through: Player_positions, foreignKey: 'player_id' });
-Positions.belongsToMany(Players, { through: Player_positions, foreignKey: 'position_id' });
+Teams.hasOne(Questionnares, {
+    foreignKey: 'team_id'
+})
+Questionnares.belongsTo(Teams, {
+    foreignKey: 'team_id'
+})
 
-Players.hasMany(Player_positions, { foreignKey: 'player_id' });
-Player_positions.belongsTo(Players, { foreignKey: 'player_id' });
+Questionnares.hasMany(Player_answers, {
+    foreignKey: 'questionnare_id'
+})
+Player_answers.belongsTo( Questionnares, {
+    foreignKey: 'questionnare_id'
+})
+Players.hasOne(Player_answers, {
+    foreignKey: 'player_id'
+})
+Player_answers.belongsTo(Players, {
+    foreignKey: 'player_id'
+})
+
 
 // // // In Positions model
-Positions.hasMany(Player_positions, { foreignKey: 'position_id' });
-Player_positions.belongsTo(Positions, { foreignKey: 'position_id' });
 // Players.hasMany(Event_players, {
 //     foreignKey: 'player_id'
 // })
@@ -665,5 +683,15 @@ Player_positions.belongsTo(Positions, { foreignKey: 'position_id' });
 
 
 
+<<<<<<< Updated upstream
+module.exports = {User, Refresh_token, Event_players,Events,Player_answers,Players, Positions, Player_stats,Questionnares,Questions, Rented_equipments, Equipment, Seasons, Teams,Team_stats, Blacklist_refresh_token, Create_user_token}
+>>>>>>> Stashed changes
+=======
 module.exports = {User, Refresh_token, Event_players,Events,Player_answers,Players, Positions, Player_positions, Player_stats,Questionnares,Questions, Rented_equipments, Equipment, Seasons, Teams,Team_stats, Blacklist_refresh_token, Create_user_token}
+>>>>>>> Stashed changes
+=======
+
+
+module.exports = {User, Refresh_token, Event_players,Events,Player_answers,Players, Positions, Player_positions, Player_stats,Questionnares, Rented_equipments, Equipment, Seasons, Teams,Team_stats, Blacklist_refresh_token, Create_user_token}
+>>>>>>> Stashed changes
 
