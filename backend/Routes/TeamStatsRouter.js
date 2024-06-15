@@ -21,6 +21,7 @@ Router.get('/', authenticateToken, TeamStatsViewController)
 Router.get('/statistics', authenticateToken, TeamStatisticsController)
 Router.get('/info', authenticateToken, TeamInfoController)
 Router.get('/form', authenticateToken, TeamFormViewController)
+Router.get('/questionary', authenticateToken, QuestionaryController)
 
 
 

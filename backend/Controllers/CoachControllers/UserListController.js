@@ -20,9 +20,7 @@ const UserListController = async (req, res) => {
             return res.status(404).json({ detail: "No teams found for this coach" });
         }
 
-        const teamIds = teams.map(team => team.id);
-        console.log('ID drużyn:', teams[0].id);
-
+        
         
         const list = await User.findAll({
             attributes:['first_name', 'last_name'],

@@ -5,7 +5,7 @@ const Router = express.Router()
 // CONTROLLERS
 const CoachLaunchViewController = require('../Controllers/CoachControllers/CoachLaunchViewController')
 const CreateNewPlayerTokenController = require('../Controllers/CreateUserControllers/CreateNewPlayerTokenController')
-const UserListController = require('../Controllers/CoachControllers/UserListController')
+const UserListController = require('../Controllers/CoachControllers/UserListController.js')
 
 // MIDDLEWARE
 const authenticateToken = require('../Middleware/authenticateToken')

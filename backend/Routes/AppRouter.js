@@ -7,6 +7,8 @@ const MainViewController = require('../Controllers/AppControllers/MainViewContro
 const UserProfileController = require('../Controllers/AppControllers/UserProfileController')
 const NotificationController = require('../Controllers/AppControllers/NotificationController')
 const TeamStatisticsController = require('../Controllers/TeamStatsControllers/TeamStatisticsController')
+const CalendarEventController = require('../Controllers/AppControllers/CalendarEventController')
+
 
 // MIDDLEWARE
 const authenticateToken = require('../Middleware/authenticateToken')
@@ -14,6 +16,7 @@ const authenticateToken = require('../Middleware/authenticateToken')
 Router.get('/', authenticateToken, MainViewController)
 Router.get('/user/profile', authenticateToken, UserProfileController)
 Router.get('/team/notification', authenticateToken, NotificationController)
+Router.get('/calendar/event', authenticateToken, CalendarEventController)
 
 
 
