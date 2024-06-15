@@ -683,15 +683,9 @@ Player_answers.belongsTo(Players, {
 
 
 
-<<<<<<< Updated upstream
-module.exports = {User, Refresh_token, Event_players,Events,Player_answers,Players, Positions, Player_stats,Questionnares,Questions, Rented_equipments, Equipment, Seasons, Teams,Team_stats, Blacklist_refresh_token, Create_user_token}
->>>>>>> Stashed changes
-=======
-module.exports = {User, Refresh_token, Event_players,Events,Player_answers,Players, Positions, Player_positions, Player_stats,Questionnares,Questions, Rented_equipments, Equipment, Seasons, Teams,Team_stats, Blacklist_refresh_token, Create_user_token}
->>>>>>> Stashed changes
-=======
+
 
 
 module.exports = {User, Refresh_token, Event_players,Events,Player_answers,Players, Positions, Player_positions, Player_stats,Questionnares, Rented_equipments, Equipment, Seasons, Teams,Team_stats, Blacklist_refresh_token, Create_user_token}
->>>>>>> Stashed changes
+
 
