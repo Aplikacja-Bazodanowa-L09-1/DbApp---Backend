@@ -52,7 +52,7 @@ const QuestionaryController = async (req, res) => {
         }
         else{
             return res.json({
-                userTeamId:userTeamId,
+                
                 playersNames: playersNames
         
             })

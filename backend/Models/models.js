@@ -391,7 +391,7 @@ Questionnares.init(
     }
 
 )
-class Questions extends Model {}
+
 
 class Rented_equipments extends Model {}
 Rented_equipments.init(
