@@ -422,19 +422,21 @@ Equipment.init(
         id:{
             type: DataTypes.INTEGER,
             allowNull: false,
-            primaryKey: true
+            primaryKey: true,
+            autoIncrement: true
         },
         descr:{
             type: DataTypes.STRING,
             allowNull: true,
         },
-        total:{
-            type: DataTypes.INTEGER,
-            allowNull: true
-        },
         available:{
             type: DataTypes.INTEGER,
             allowNull: true
+        },
+        team_id:{
+            type: DataTypes.INTEGER,
+            allowNull: false,
+
         }
     },
     {
@@ -678,6 +680,14 @@ Rented_equipments.belongsTo(Players, {
     foreignKey: 'player_id'
 })
 
+
+
+Teams.hasMany(Equipment, {
+    foreignKey: 'team_id'
+})
+Equipment.belongsTo(Teams, {
+    foreignKey: 'team_id'
+})
 
 // // // In Positions model
 // Players.hasMany(Event_players, {

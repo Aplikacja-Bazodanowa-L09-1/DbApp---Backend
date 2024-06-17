@@ -10,7 +10,10 @@ const UserIdViewDataController = require('../Controllers/CoachControllers/UserVi
 
 const GetPlayerStatistics  = require('../Controllers/CoachControllers/UserViewStatisticController.js') 
 const UserUpdatePlayerStatistics = require('../Controllers/CoachControllers/UserUpdatePlayerStatistics.js') 
-
+const UserViewEquipmentController = require('../Controllers/CoachControllers/UserViewEquipmentController')
+const NotificationEditController = require('../Controllers/CoachControllers/NotificationEditController.js')
+const EquipmentAddController = require('../Controllers/CoachControllers/EquipmentAddController.js')
+const  EquipmentDeleteController = require('../Controllers/CoachControllers/EquipmentDeleteController.js')
 
 
 // MIDDLEWARE
@@ -25,7 +28,11 @@ Router.get('/getCreatePlayerToken', authenticateToken, authenticateCoach, Create
 Router.get('/list',authenticateToken,authenticateCoach,UserListController)
 Router.get('/statistic',authenticateToken,authenticateCoach,GetPlayerStatistics)
 Router.get('/data',authenticateToken,authenticateCoach,UserIdViewDataController)
+//Router.get('/equipment/rented',authenticateToken,authenticateCoach,UserViewEquipmentController)
 
 Router.post('/statistic/update', authenticateToken,authenticateCoach,UserUpdatePlayerStatistics)
+Router.post('/notification/update', authenticateToken,authenticateCoach,NotificationEditController)
+Router.post('/equipment/update', authenticateToken,authenticateCoach,EquipmentAddController)
+Router.delete('/equipment/delete/:id', authenticateToken,authenticateCoach,EquipmentDeleteController)
 
 module.exports = Router
