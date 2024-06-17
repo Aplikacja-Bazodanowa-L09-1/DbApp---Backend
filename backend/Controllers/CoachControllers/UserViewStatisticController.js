@@ -2,7 +2,7 @@ const {User, Players, Player_stats,} = require('../../Models/models')
 
 const { Op } = require('sequelize');
 
-const IdViewStatisticController = async (req,res) => {
+const GetPlayerStatistics = async (req,res) => {
 
     try {
 
@@ -33,9 +33,11 @@ const IdViewStatisticController = async (req,res) => {
     } catch (error) {
         return res.json({'detail':error.message})
     }
-}
+};
 
 
 
 
-module.exports = IdViewStatisticController
+
+
+module.exports = GetPlayerStatistics
