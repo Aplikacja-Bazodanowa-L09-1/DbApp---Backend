@@ -3,6 +3,8 @@ const {Equipment, Rented_equipments, User} = require('../../Models/models')
 const RentEqController = async (req, res) => {
     try {
         
+        console.log('rent eq endpoint ----------------------------------------------------------------')
+
         const [affectedCount] = await Equipment.update(
 
             { available: 'false'},
@@ -15,7 +17,6 @@ const RentEqController = async (req, res) => {
         if(affectedCount > 0){
 
             try {
-                
                 const user = await User.findOne({ where: { username: req.user.name } });
 
                 if(!user) return res.status(404).json({"detail": 'user not found'})

@@ -670,6 +670,14 @@ Player_answers.belongsTo(Players, {
     foreignKey: 'player_id'
 })
 
+Players.hasMany(Rented_equipments, {
+    foreignKey: 'player_id'
+})
+
+Rented_equipments.belongsTo(Players, {
+    foreignKey: 'player_id'
+})
+
 
 // // // In Positions model
 // Players.hasMany(Event_players, {

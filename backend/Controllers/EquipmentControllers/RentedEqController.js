@@ -3,19 +3,23 @@ const {User, Players, Rented_equipments, Equipment} = require('../../Models/mode
 
 const RentedEqController = async (req, res) => {
     try {
-        
+        console.log("rented endpoint ---------------------------------------------------------")
+        console.log(req.user.name)
+
+        const user = await User.findOne({
+            attributes: ['id'],
+            where: {username: req.user.name}
+        })
+
+        if(!user){
+            res.status(404).json({'detail': 'No user found'})
+        }
+
         const rented_equipment = await Rented_equipments.findAll({
-              include: [{
-                model: Players,
-                attributes: ['id'],
-                include: [{
-                  model: User,
-                  attributes: ['id'],
-                  where: { username: req.user.name }
-                }]
-              }]
+              where: {player_id: user.dataValues.id}
         }).then(async rent_equips => {
 
+            console.log(rent_equips)
             if(rent_equips.length != 0){
                 const equip_id_list = []
 
