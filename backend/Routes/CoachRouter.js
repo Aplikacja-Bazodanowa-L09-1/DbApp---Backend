@@ -14,6 +14,7 @@ const UserViewEquipmentController = require('../Controllers/CoachControllers/Use
 const NotificationEditController = require('../Controllers/CoachControllers/NotificationEditController.js')
 const EquipmentAddController = require('../Controllers/CoachControllers/EquipmentAddController.js')
 const  EquipmentDeleteController = require('../Controllers/CoachControllers/EquipmentDeleteController.js')
+const   TeamStatisticEditController = require('../Controllers/CoachControllers/TeamStatisticEditController.js')
 
 
 // MIDDLEWARE
@@ -34,5 +35,6 @@ Router.post('/statistic/update', authenticateToken,authenticateCoach,UserUpdateP
 Router.post('/notification/update', authenticateToken,authenticateCoach,NotificationEditController)
 Router.post('/equipment/update', authenticateToken,authenticateCoach,EquipmentAddController)
 Router.delete('/equipment/delete/:id', authenticateToken,authenticateCoach,EquipmentDeleteController)
+Router.post('/teamstatistic/update', authenticateToken,authenticateCoach,TeamStatisticEditController)
 
 module.exports = Router
