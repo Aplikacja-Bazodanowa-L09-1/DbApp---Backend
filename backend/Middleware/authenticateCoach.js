@@ -20,7 +20,7 @@ const authenticateCoach = async (req, res, next) => {
                 next()
             }else{
                 req.is_user=false
-                res.status(401).json({'detail':'User is not a coach. Access Forbidden'})
+                res.status(403).json({'detail':'User is not a coach. Access Forbidden'})
             }
             
             

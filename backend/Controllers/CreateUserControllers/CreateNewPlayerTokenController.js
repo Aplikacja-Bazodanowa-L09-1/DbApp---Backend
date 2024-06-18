@@ -1,5 +1,5 @@
 const crypto = require('crypto')
-const {Create_user_token} = require('../../Models/models')
+const {Create_user_token, Teams, User} = require('../../Models/models')
 
 const CreateNewPlayerTokenController = async (req,res) => {
 
@@ -31,10 +31,39 @@ const CreateNewPlayerTokenController = async (req,res) => {
 
     try {
         
-        const query = await Create_user_token.create({expire_date:tokenExpireDate, role:'Player', token:createAccountToken})
-        .then(token => {
-            res.json({'createPlayerToken':createAccountToken})
+        const user = await User.findOne({
+            attributes: ['id'],
+            where: {
+                username: req.user.name
+            }
         })
+
+        if(!user){
+            return res.status(404).json({'detail':' No user'})
+        }else{
+            const id = user.dataValues.id
+            const team = await Teams.findOne({
+                attributes: ['id'],
+                where: {
+                    coach_id: id
+                }
+            })
+
+            if(!team){
+                return res.status(404).json({'detail':' No team'})
+            }else{
+                console.log('cipcia')
+                const team_id = team.dataValues.id
+                const query = await Create_user_token.create({expire_date:tokenExpireDate, role:'Player', token:createAccountToken, team_id: team.dataValues.id})
+                .then(token => {
+                    res.json({'createPlayerToken':createAccountToken})
+                })
+
+            }
+
+        }
+
+        
 
     } catch (error) {
         res.status(400).json({'detail':error})
