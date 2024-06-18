@@ -4,16 +4,16 @@ const UserListController = async (req, res) => {
     try {
         
         const coach = await User.findOne({ where: { username: req.user.name, role: 'Coach' } });
-        console.log('Zalogowany trener:', coach);
+        //console.log('Zalogowany trener:', coach);
 
         if (!coach) {
-            console.log('Coach not found');
+            //console.log('Coach not found');
             return res.status(404).json({ detail: "Coach not found" });
         }
 
         
         const teams = await Teams.findAll({ where: { coach_id: coach.id } });
-        console.log('Drużyny prowadzone przez trenera:', teams);
+        //console.log('Drużyny prowadzone przez trenera:', teams);
 
         if (teams.length === 0) {
             console.log('No teams found for this coach');
@@ -39,7 +39,7 @@ const UserListController = async (req, res) => {
             }],
             where: { role: 'Player' }
         });
-        console.log('Zawodnicy w drużynach:', list);
+        //console.log('Zawodnicy w drużynach:', list);
 
         if (list.length === 0) {
             console.log('No players found for the teams of this coach');

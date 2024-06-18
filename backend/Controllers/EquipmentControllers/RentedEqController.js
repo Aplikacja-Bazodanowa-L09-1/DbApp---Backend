@@ -19,7 +19,6 @@ const RentedEqController = async (req, res) => {
               where: {player_id: user.dataValues.id}
         }).then(async rent_equips => {
 
-            console.log(rent_equips)
             if(rent_equips.length != 0){
                 const equip_id_list = []
 

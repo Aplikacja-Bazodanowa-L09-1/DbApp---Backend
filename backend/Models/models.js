@@ -82,12 +82,6 @@ Refresh_token.init(
             type: DataTypes.STRING,
             allowNull: true
         },
-        // id:{
-        //     type:DataTypes.INTEGER,
-        //     allowNull:false,
-        //     primaryKey:true,
-        //     autoIncrement:true
-        // }
     },
     {
         sequelize,
@@ -223,11 +217,11 @@ Players.init(
             type: DataTypes.DATE,
             allowNull:true
         },
-        heigth:{
+        height:{
             type:DataTypes.INTEGER,
             allowNull:true
         },
-        weigth:{
+        weight:{
             type:DataTypes.INTEGER,
             allowNull:true
         },
@@ -566,10 +560,15 @@ Create_user_token.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
+        team_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        }
     },
     {
         sequelize,
-        modelName: 'create_user_token'
+        modelName: 'create_user_token',
+        tableName: 'create_user_token'
     }
 )
 
